@@ -29,7 +29,7 @@ static void wich_type(char *filepath, struct type *type)
 
     free(filepath);
     nb = read(fd, buff, 100);
-    if (nb == -1)
+    if (nb == -1 || buff == NULL)
         return;
     for (int i = nb + 1; i < 100; i++)
         buff[i] = '\0';

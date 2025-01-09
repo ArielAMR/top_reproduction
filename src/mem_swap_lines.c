@@ -58,7 +58,7 @@ void mem_swap_lines(int *lines, int height)
     char *buff = malloc(MEMINFOREAD);
     int i = 0;
 
-    if (fd == -1)
+    if (fd == -1 || buff == NULL)
         return;
     i = read(fd, buff, MEMINFOREAD);
     if (i == -1)

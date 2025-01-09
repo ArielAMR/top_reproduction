@@ -12,6 +12,8 @@ char *strcatpath(char *foldername, char *pid, char *filename)
     int size = strlen(pid) + strlen(filename) + strlen(foldername) + 1;
     char *strpath = malloc(size);
 
+    if (strpath == NULL)
+        return NULL;
     strpath[size - 1] = '\0';
     strcpy(strpath, foldername);
     strpath = strcat(strpath, pid);

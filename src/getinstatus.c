@@ -80,7 +80,7 @@ int getinstatus(struct linked_list_s *head)
     char buff[STATUSREAD] = {0};
 
     free(path);
-    if (fd == -1 || read(fd, buff, STATUSREAD) == -1)
+    if (fd == -1 || path == NULL || read(fd, buff, STATUSREAD) == -1)
         return 84;
     get_name(buff, head);
     get_state(buff, head);

@@ -53,7 +53,7 @@ int getinstat(struct linked_list_s *head)
     char buff[STATREAD] = {0};
 
     free(path);
-    if (fd == -1 || read(fd, buff, STATREAD) == -1 ||
+    if (fd == -1 || path == NULL || read(fd, buff, STATREAD) == -1 ||
         parsestat(list_stats, nbvalues, buff, fd) == 84)
         return 84;
     getpr(head, list_stats);

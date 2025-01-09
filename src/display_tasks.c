@@ -23,7 +23,11 @@ void putnode(struct linked_list_s **previus, char *str)
     struct linked_list_s *node = 0;
 
     node = malloc(sizeof(struct linked_list_s));
+    if (node == NULL)
+        return
     node->pid = strdup(str);
+    if (node->pid == NULL)
+        return;
     node->next_node = *previus;
     *previus = node;
 }
@@ -54,6 +58,8 @@ static void get_user(struct linked_list_s *head)
     struct passwd *pw = NULL;
     char *path = strcatpath("/proc/", head->pid, "");
 
+    if (path == NULL)
+        return;
     stat(path, &pidstat);
     free(path);
     pw = getpwuid(pidstat.st_uid);
@@ -94,8 +100,6 @@ static void free_content(struct linked_list_s *head)
 static void display_linked_list_s(struct linked_list_s *head,
     int *lines, int height, int offset)
 {
-    struct linked_list_s *next = NULL;
-
     for (int i = 0; head->next_node != NULL && i < offset; i++)
         head = head->next_node;
     while (head != NULL && *lines < height) {
@@ -107,8 +111,7 @@ static void display_linked_list_s(struct linked_list_s *head,
                 head->time_s.minutes, head->time_s.fseconds, head->name);
             free_content(head);
         }
-        next = head->next_node;
-        head = next;
+        head = head->next_node;
     }
 }
 
