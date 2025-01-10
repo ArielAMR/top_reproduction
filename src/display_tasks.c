@@ -24,7 +24,7 @@ void putnode(struct linked_list_s **previus, char *str)
 
     node = malloc(sizeof(struct linked_list_s));
     if (node == NULL)
-        return
+        return;
     node->pid = strdup(str);
     if (node->pid == NULL)
         return;
